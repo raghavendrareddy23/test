@@ -19,6 +19,7 @@ function PaginationTable() {
         setData(result);
       }
     } catch (err) {
+      alert("Failed to fetch data");
       console.error("failed to fetch data", err.message || err);
     }
   }
