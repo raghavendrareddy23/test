@@ -142,7 +142,7 @@ function States() {
       <div style={{ marginTop: "10px" }}>
         {selectCity && selectState && selectCountry && (
           <p>
-            You selected <span style={{ fontWeight: '500', fontSize: "25px" }}>{selectCity} </span>
+            You selected <span style={{ fontWeight: '500', fontSize: "25px" }}>{selectCity}, </span>
             <span style={{ color: "GrayText", fontSize: "20px" }}>
               {selectState}, {selectCountry}
             </span>
