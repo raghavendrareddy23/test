@@ -1,9 +1,11 @@
-import CounterApp from './components/counter';
+import CalculatorApp from './components/calculator';
+// import CounterApp from './components/counter';
 
 function App() {
   return (
-    <div className="App">
-      <CounterApp/>
+    <div style={{textAlign: 'center'}}>
+      {/* <CounterApp/> */}
+      <CalculatorApp/>
     </div>
   );
 }
