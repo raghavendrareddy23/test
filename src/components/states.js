@@ -102,14 +102,15 @@ function States() {
           marginRight: "10px",
         }}
       >
-        <option>select Country</option>
+        <option value=''>select Country</option>
         {country.map((idx) => (
-          <option key={idx}>{idx}</option>
+          <option key={idx} value={idx}>{idx}</option>
         ))}
       </select>
       <select
         value={selectState}
         onChange={handleStateChange}
+        disabled={!selectCountry}
         style={{
           padding: "10px",
           fontSize: "16px",
@@ -118,14 +119,15 @@ function States() {
           marginRight: "10px",
         }}
       >
-        <option>select State</option>
+        <option value=''>select State</option>
         {state.map((idx) => (
-          <option key={idx}>{idx}</option>
+          <option key={idx} value={idx}>{idx}</option>
         ))}
       </select>
       <select
         value={selectCity}
         onChange={handleCityChange}
+        disabled={!selectState}
         style={{
           padding: "10px",
           fontSize: "16px",
@@ -134,20 +136,19 @@ function States() {
           marginRight: "10px",
         }}
       >
-        <option>select City</option>
+        <option value=''>select City</option>
         {city.map((idx) => (
-          <option key={idx}>{idx}</option>
+          <option key={idx} value={idx}>{idx}</option>
         ))}
       </select>
       <div style={{ marginTop: "10px" }}>
-        {selectCity && selectState && selectCountry && (
-          <p>
-            You selected <span style={{ fontWeight: '500', fontSize: "25px" }}>{selectCity}, </span>
-            <span style={{ color: "GrayText", fontSize: "20px" }}>
-              {selectState}, {selectCountry}
-            </span>
-          </p>
-        )}
+        {selectCity ? (
+          <span>You selected {selectCity}, {selectState}, {selectCountry}</span>
+        ) : selectState ? (
+          <span>You selected {selectState}, {selectCountry}</span>
+        ) : selectCountry ? (
+          <span>You selected {selectCountry}</span>
+        ) : null}
       </div>
     </div>
   );
