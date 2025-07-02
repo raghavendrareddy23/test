@@ -1,7 +1,9 @@
 // import CalculatorApp from './components/calculator';
 // import CounterApp from './components/counter';
 
-import States from "./components/states";
+import DisplayName from "./components/displayName";
+
+// import States from "./components/states";
 
 // import PaginationTable from "./components/paginationTable";
 
@@ -11,7 +13,8 @@ function App() {
       {/* <CounterApp/> */}
       {/* <CalculatorApp/> */}
       {/* <PaginationTable/> */}
-      <States/>
+      {/* <States/> */}
+      <DisplayName/>
     </div>
   );
 }
