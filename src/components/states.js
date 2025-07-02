@@ -27,20 +27,37 @@ function States() {
 
   useEffect(() => {
     async function fetchStates() {
+      if (!selectCountry) {
+        setState([]);
+        setCity([]);
+        setSelectState("");
+        setSelectCity("");
+        return;
+      }
       try {
         const response = await axios.get(
-          ` https://crio-location-selector.onrender.com/country=${selectCountry}/states`
+          `https://crio-location-selector.onrender.com/country=${selectCountry}/states`
         );
         if (response.status === 200) {
           setState(response.data);
+          setSelectState("");
+          setCity([]);
+          setSelectCity("");
         }
       } catch (err) {
         console.error("500", err || err.statusCode);
+        setState([]);
+        setSelectState("");
       }
     }
     fetchStates();
   }, [selectCountry]);
   useEffect(() => {
+    if (!selectState) {
+      setCity([]);
+      setSelectCity("");
+      return;
+    }
     async function fetchCities() {
       try {
         const response = await axios.get(
@@ -48,9 +65,12 @@ function States() {
         );
         if (response.status === 200) {
           setCity(response.data);
+          setSelectCity("");
         }
       } catch (err) {
         console.error("500", err || err.statusCode);
+        setCity([]);
+        setSelectCity("");
       }
     }
     fetchCities();
@@ -79,7 +99,7 @@ function States() {
           fontSize: "16px",
           borderRadius: "4px",
           border: "1px solid #ccc",
-          marginRight:'10px'
+          marginRight: "10px",
         }}
       >
         <option>select Country</option>
@@ -95,7 +115,7 @@ function States() {
           fontSize: "16px",
           borderRadius: "4px",
           border: "1px solid #ccc",
-          marginRight:'10px'
+          marginRight: "10px",
         }}
       >
         <option>select State</option>
@@ -111,7 +131,7 @@ function States() {
           fontSize: "16px",
           borderRadius: "4px",
           border: "1px solid #ccc",
-          marginRight:'10px'
+          marginRight: "10px",
         }}
       >
         <option>select City</option>
@@ -119,10 +139,13 @@ function States() {
           <option key={idx}>{idx}</option>
         ))}
       </select>
-      <div style={{marginTop: '10px'}}>
+      <div style={{ marginTop: "10px" }}>
         {selectCity && selectState && selectCountry && (
           <p>
-            <b>You selected </b><b style={{fontSize:'25px'}}>{selectCity}</b>, <b><span style={{color:'GrayText', fontSize:'20px'}}>{selectState}, {selectCountry}</span></b>
+            You selected <span style={{ fontWeight: '500', fontSize: "25px" }}>{selectCity} </span>
+            <span style={{ color: "GrayText", fontSize: "20px" }}>
+              {selectState}, {selectCountry}
+            </span>
           </p>
         )}
       </div>
